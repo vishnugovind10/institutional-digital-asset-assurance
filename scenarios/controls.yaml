@@ -1,0 +1,120 @@
+- id: SC-001
+  domain: Smart Contract
+  name: Upgrade authority
+  requirement: Upgrade authority is controlled by a governed, multi-party process.
+  severity: CRITICAL
+  freshness_days: 30
+  blocking: true
+  owner: Tokenisation platform
+  state_key: upgrade_authority
+  expected_state: governed_multisig
+  remediation: Move upgrades behind the approved multi-party change process and retain execution evidence.
+  evidence_ids: [EV-SC-001]
+- id: CU-001
+  domain: Custody
+  name: Authorization and segregation
+  requirement: Custody authorization and asset segregation are evidenced.
+  severity: CRITICAL
+  freshness_days: 30
+  blocking: true
+  owner: Custodian
+  state_key: custody_authorization
+  expected_state: authorized_and_segregated
+  remediation: Resolve custody evidence gaps and independently verify segregation.
+  evidence_ids: [EV-CU-001]
+- id: TF-001
+  domain: Tokenisation
+  name: Transfer restrictions
+  requirement: Restricted transfers are checked against the approved allowlist.
+  severity: CRITICAL
+  freshness_days: 30
+  blocking: true
+  owner: Tokenisation platform
+  state_key: transfer_control
+  expected_state: allowlist_enforced
+  remediation: Reinstate and validate transfer restrictions before issuance.
+  evidence_ids: [EV-TF-001]
+- id: NAV-001
+  domain: Governance
+  name: NAV source freshness
+  requirement: The NAV source is approved and within its evidence freshness window.
+  severity: HIGH
+  freshness_days: 7
+  blocking: false
+  owner: Fund administrator
+  state_key: nav_source
+  expected_state: approved_source
+  remediation: Obtain a current approved-source attestation.
+  evidence_ids: [EV-NAV-001]
+- id: BC-001
+  domain: Blockchain
+  name: Finality assumptions
+  requirement: Finality assumptions are documented and observable for this deployment.
+  severity: HIGH
+  freshness_days: 30
+  blocking: false
+  owner: Network operations
+  state_key: finality_model
+  expected_state: documented_and_monitored
+  remediation: Document finality thresholds and monitoring ownership.
+  evidence_ids: [EV-BC-001]
+- id: ST-001
+  domain: Settlement
+  name: Delivery-versus-payment integrity
+  requirement: Asset and cash legs reconcile to the same settlement outcome.
+  severity: CRITICAL
+  freshness_days: 30
+  blocking: true
+  owner: Settlement operations
+  state_key: settlement_integrity
+  expected_state: atomic_or_reconciled
+  remediation: Reconcile asset and cash legs and evidence the recovery path.
+  evidence_ids: [EV-ST-001]
+- id: TP-001
+  domain: Third Party
+  name: Platform assurance
+  requirement: Required provider assurance evidence is available and current.
+  severity: HIGH
+  freshness_days: 90
+  blocking: false
+  owner: Third-party risk
+  state_key: provider_assurance
+  expected_state: current_assurance
+  remediation: Obtain current provider assurance evidence or record a time-bound exception.
+  evidence_ids: [EV-TP-001]
+- id: GV-001
+  domain: Governance
+  name: Change approval
+  requirement: Material changes require recorded approval and ownership.
+  severity: HIGH
+  freshness_days: 90
+  blocking: false
+  owner: Product governance
+  state_key: change_approval
+  expected_state: approval_recorded
+  remediation: Record accountable approval and change ownership.
+  evidence_ids: [EV-GV-001]
+- id: EV-001
+  domain: Evidence
+  name: Evidence integrity
+  requirement: Evidence references have deterministic integrity identifiers.
+  severity: HIGH
+  freshness_days: 30
+  blocking: false
+  owner: Assurance owner
+  state_key: evidence_integrity
+  expected_state: integrity_references_present
+  remediation: Re-issue evidence references with integrity identifiers.
+  evidence_ids: [EV-EV-001]
+- id: OP-001
+  domain: Operations
+  name: Incident recovery
+  requirement: An operational recovery path has an accountable owner and exercise evidence.
+  severity: HIGH
+  freshness_days: 90
+  blocking: false
+  owner: Service operations
+  state_key: recovery_exercised
+  expected_state: exercised
+  remediation: Exercise the recovery path and retain the outcome record.
+  evidence_ids: [EV-OP-001]

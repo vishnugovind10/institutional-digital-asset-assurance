@@ -1,0 +1,349 @@
+{
+  "abstention_reasons": [],
+  "as_of": "2026-10-08",
+  "conditions": [
+    {
+      "control_id": "GV-001",
+      "owner": "Product governance",
+      "requirement": "Record accountable approval and change ownership."
+    }
+  ],
+  "control_count": 10,
+  "controls": [
+    {
+      "blocking": true,
+      "domain": "Smart Contract",
+      "evidence": [
+        {
+          "id": "EV-SC-001",
+          "observed_at": "2026-10-01",
+          "reference": "sha256:demo-sc001",
+          "source": "Synthetic change-control record",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-SC-001"
+      ],
+      "expected_state": "governed_multisig",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "id": "SC-001",
+      "missing_evidence": [],
+      "name": "Upgrade authority",
+      "owner": "Tokenisation platform",
+      "remediation": "Move upgrades behind the approved multi-party change process and retain execution evidence.",
+      "requirement": "Upgrade authority is controlled by a governed, multi-party process.",
+      "severity": "CRITICAL",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "upgrade_authority",
+      "status": "PASS",
+      "system_state": "governed_multisig"
+    },
+    {
+      "blocking": true,
+      "domain": "Custody",
+      "evidence": [
+        {
+          "id": "EV-CU-001",
+          "observed_at": "2026-10-02",
+          "reference": "sha256:demo-cu001",
+          "source": "Synthetic custody attestation",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-CU-001"
+      ],
+      "expected_state": "authorized_and_segregated",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "id": "CU-001",
+      "missing_evidence": [],
+      "name": "Authorization and segregation",
+      "owner": "Custodian",
+      "remediation": "Resolve custody evidence gaps and independently verify segregation.",
+      "requirement": "Custody authorization and asset segregation are evidenced.",
+      "severity": "CRITICAL",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "custody_authorization",
+      "status": "PASS",
+      "system_state": "authorized_and_segregated"
+    },
+    {
+      "blocking": true,
+      "domain": "Tokenisation",
+      "evidence": [
+        {
+          "id": "EV-TF-001",
+          "observed_at": "2026-10-03",
+          "reference": "sha256:demo-tf001",
+          "source": "Synthetic transfer-policy test",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-TF-001"
+      ],
+      "expected_state": "allowlist_enforced",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "id": "TF-001",
+      "missing_evidence": [],
+      "name": "Transfer restrictions",
+      "owner": "Tokenisation platform",
+      "remediation": "Reinstate and validate transfer restrictions before issuance.",
+      "requirement": "Restricted transfers are checked against the approved allowlist.",
+      "severity": "CRITICAL",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "transfer_control",
+      "status": "PASS",
+      "system_state": "allowlist_enforced"
+    },
+    {
+      "blocking": false,
+      "domain": "Governance",
+      "evidence": [
+        {
+          "id": "EV-NAV-001",
+          "observed_at": "2026-10-04",
+          "reference": "sha256:demo-nav001",
+          "source": "Synthetic approved-source register",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-NAV-001"
+      ],
+      "expected_state": "approved_source",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 7,
+      "id": "NAV-001",
+      "missing_evidence": [],
+      "name": "NAV source freshness",
+      "owner": "Fund administrator",
+      "remediation": "Obtain a current approved-source attestation.",
+      "requirement": "The NAV source is approved and within its evidence freshness window.",
+      "severity": "HIGH",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "nav_source",
+      "status": "PASS",
+      "system_state": "approved_source"
+    },
+    {
+      "blocking": false,
+      "domain": "Blockchain",
+      "evidence": [
+        {
+          "id": "EV-BC-001",
+          "observed_at": "2026-10-01",
+          "reference": "sha256:demo-bc001",
+          "source": "Synthetic finality configuration review",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-BC-001"
+      ],
+      "expected_state": "documented_and_monitored",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "id": "BC-001",
+      "missing_evidence": [],
+      "name": "Finality assumptions",
+      "owner": "Network operations",
+      "remediation": "Document finality thresholds and monitoring ownership.",
+      "requirement": "Finality assumptions are documented and observable for this deployment.",
+      "severity": "HIGH",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "finality_model",
+      "status": "PASS",
+      "system_state": "documented_and_monitored"
+    },
+    {
+      "blocking": true,
+      "domain": "Settlement",
+      "evidence": [
+        {
+          "id": "EV-ST-001",
+          "observed_at": "2026-10-05",
+          "reference": "sha256:demo-st001",
+          "source": "Synthetic settlement reconciliation",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-ST-001"
+      ],
+      "expected_state": "atomic_or_reconciled",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "id": "ST-001",
+      "missing_evidence": [],
+      "name": "Delivery-versus-payment integrity",
+      "owner": "Settlement operations",
+      "remediation": "Reconcile asset and cash legs and evidence the recovery path.",
+      "requirement": "Asset and cash legs reconcile to the same settlement outcome.",
+      "severity": "CRITICAL",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "settlement_integrity",
+      "status": "PASS",
+      "system_state": "atomic_or_reconciled"
+    },
+    {
+      "blocking": false,
+      "domain": "Third Party",
+      "evidence": [
+        {
+          "id": "EV-TP-001",
+          "observed_at": "2026-09-20",
+          "reference": "sha256:demo-tp001",
+          "source": "Synthetic provider assurance summary",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-TP-001"
+      ],
+      "expected_state": "current_assurance",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 90,
+      "id": "TP-001",
+      "missing_evidence": [],
+      "name": "Platform assurance",
+      "owner": "Third-party risk",
+      "remediation": "Obtain current provider assurance evidence or record a time-bound exception.",
+      "requirement": "Required provider assurance evidence is available and current.",
+      "severity": "HIGH",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "provider_assurance",
+      "status": "PASS",
+      "system_state": "current_assurance"
+    },
+    {
+      "blocking": false,
+      "domain": "Governance",
+      "evidence": [
+        {
+          "id": "EV-GV-001",
+          "observed_at": "2026-10-01",
+          "reference": "sha256:demo-gv001",
+          "source": "Synthetic governance approval record",
+          "status": "PARTIAL"
+        }
+      ],
+      "evidence_ids": [
+        "EV-GV-001"
+      ],
+      "expected_state": "approval_recorded",
+      "finding": "Evidence supports only part of the requirement.",
+      "freshness_days": 90,
+      "id": "GV-001",
+      "missing_evidence": [],
+      "name": "Change approval",
+      "owner": "Product governance",
+      "remediation": "Record accountable approval and change ownership.",
+      "requirement": "Material changes require recorded approval and ownership.",
+      "severity": "HIGH",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "change_approval",
+      "status": "PARTIAL",
+      "system_state": "approval_recorded"
+    },
+    {
+      "blocking": false,
+      "domain": "Evidence",
+      "evidence": [
+        {
+          "id": "EV-EV-001",
+          "observed_at": "2026-10-06",
+          "reference": "sha256:demo-ev001",
+          "source": "Synthetic evidence manifest",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-EV-001"
+      ],
+      "expected_state": "integrity_references_present",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "id": "EV-001",
+      "missing_evidence": [],
+      "name": "Evidence integrity",
+      "owner": "Assurance owner",
+      "remediation": "Re-issue evidence references with integrity identifiers.",
+      "requirement": "Evidence references have deterministic integrity identifiers.",
+      "severity": "HIGH",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "evidence_integrity",
+      "status": "PASS",
+      "system_state": "integrity_references_present"
+    },
+    {
+      "blocking": false,
+      "domain": "Operations",
+      "evidence": [
+        {
+          "id": "EV-OP-001",
+          "observed_at": "2026-09-28",
+          "reference": "sha256:demo-op001",
+          "source": "Synthetic recovery exercise report",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-OP-001"
+      ],
+      "expected_state": "exercised",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 90,
+      "id": "OP-001",
+      "missing_evidence": [],
+      "name": "Incident recovery",
+      "owner": "Service operations",
+      "remediation": "Exercise the recovery path and retain the outcome record.",
+      "requirement": "An operational recovery path has an accountable owner and exercise evidence.",
+      "severity": "HIGH",
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "recovery_exercised",
+      "status": "PASS",
+      "system_state": "exercised"
+    }
+  ],
+  "critical_findings": [],
+  "decision": "CONDITIONAL GO",
+  "dependencies": [
+    "Fund administrator",
+    "Tokenisation platform",
+    "Custodian",
+    "Permissioned ledger",
+    "Cash settlement rail"
+  ],
+  "evidence_coverage_percent": 100,
+  "failed_controls": [],
+  "partial_controls": [
+    "GV-001"
+  ],
+  "product": "Example EUR Tokenised Fund",
+  "rationale": "No blocking failure was identified; listed remediation conditions remain open.",
+  "scenario": "CONDITIONAL GO \u2014 remediation open",
+  "scenario_key": "conditional_go",
+  "summary": {
+    "ABSTAIN": 0,
+    "FAIL": 0,
+    "PARTIAL": 1,
+    "PASS": 9
+  },
+  "synthetic": true
+}

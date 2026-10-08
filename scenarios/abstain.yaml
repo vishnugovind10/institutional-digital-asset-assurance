@@ -1,0 +1,27 @@
+scenario: ABSTAIN — custody evidence stale
+scenario_key: abstain
+as_of: "2026-10-08"
+product: Example EUR Tokenised Fund
+system_state:
+  upgrade_authority: governed_multisig
+  custody_authorization: authorized_and_segregated
+  transfer_control: allowlist_enforced
+  nav_source: approved_source
+  finality_model: documented_and_monitored
+  settlement_integrity: atomic_or_reconciled
+  provider_assurance: current_assurance
+  change_approval: approval_recorded
+  evidence_integrity: integrity_references_present
+  recovery_exercised: exercised
+dependencies: [Fund administrator, Tokenisation platform, Custodian, Permissioned ledger, Cash settlement rail]
+evidence:
+  - {id: EV-SC-001, source: Synthetic change-control record, observed_at: "2026-10-01", status: VERIFIED, reference: "sha256:demo-sc001"}
+  - {id: EV-CU-001, source: Synthetic custody attestation, observed_at: "2026-08-22", status: VERIFIED, reference: "sha256:demo-cu001"}
+  - {id: EV-TF-001, source: Synthetic transfer-policy test, observed_at: "2026-10-03", status: VERIFIED, reference: "sha256:demo-tf001"}
+  - {id: EV-NAV-001, source: Synthetic approved-source register, observed_at: "2026-10-04", status: VERIFIED, reference: "sha256:demo-nav001"}
+  - {id: EV-BC-001, source: Synthetic finality configuration review, observed_at: "2026-10-01", status: VERIFIED, reference: "sha256:demo-bc001"}
+  - {id: EV-ST-001, source: Synthetic settlement reconciliation, observed_at: "2026-10-05", status: VERIFIED, reference: "sha256:demo-st001"}
+  - {id: EV-TP-001, source: Synthetic provider assurance summary, observed_at: "2026-09-20", status: VERIFIED, reference: "sha256:demo-tp001"}
+  - {id: EV-GV-001, source: Synthetic governance approval record, observed_at: "2026-10-01", status: VERIFIED, reference: "sha256:demo-gv001"}
+  - {id: EV-EV-001, source: Synthetic evidence manifest, observed_at: "2026-10-06", status: VERIFIED, reference: "sha256:demo-ev001"}
+  - {id: EV-OP-001, source: Synthetic recovery exercise report, observed_at: "2026-09-28", status: VERIFIED, reference: "sha256:demo-op001"}

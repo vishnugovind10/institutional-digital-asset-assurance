@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Synthetic, executable institutional digital-asset assurance and go-live decision reference implementation.">
+  <title>Institutional Digital Asset Assurance</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#overview" aria-label="Assurance console home"><span class="brand-mark">IA</span><span>INSTITUTIONAL ASSURANCE <small>CONTROL PLANE / REFERENCE</small></span></a>
+    <div class="top-meta"><span class="live-dot"></span> SYNTHETIC ENVIRONMENT <span class="divider">/</span> <span id="as-of">—</span></div>
+  </header>
+  <main>
+    <section class="intro" id="overview">
+      <div><p class="eyebrow">PRE-PRODUCTION ASSURANCE / DIGITAL ASSETS</p><h1>Controls into a<br><em>defensible decision.</em></h1><p class="lede">Assess control operation across a tokenised product, trace the evidence behind each result, and see how adverse conditions change the go-live recommendation.</p></div>
+      <div class="product-card"><div class="label">ASSESSMENT SUBJECT</div><h2 id="product">Example EUR Tokenised Fund</h2><div class="product-meta"><span>EURO-DENOMINATED</span><span>PERMISSIONED LEDGER</span><span>REFERENCE MODEL</span></div></div>
+    </section>
+
+    <section class="scenario-bar" aria-label="Scenario simulator">
+      <div><span class="eyebrow">SCENARIO SIMULATOR</span><strong>Change the assessment conditions</strong></div>
+      <div class="scenario-buttons">
+        <button data-scenario="go">Baseline</button><button data-scenario="no_go">Inject contract failure</button><button data-scenario="abstain">Age custody evidence</button><button data-scenario="conditional_go">Open remediation</button>
+      </div>
+    </section>
+
+    <section class="decision-panel" aria-live="polite">
+      <div class="decision-main"><div class="label">GO-LIVE RECOMMENDATION</div><div class="decision-line"><span id="decision-mark"></span><strong id="decision">Loading</strong></div><p id="rationale"></p></div>
+      <div class="metrics"><div><span>CONTROLS</span><strong id="count-total">—</strong></div><div><span>PASS</span><strong id="count-pass">—</strong></div><div><span>PARTIAL</span><strong id="count-partial">—</strong></div><div><span>FAIL</span><strong id="count-fail">—</strong></div><div><span>EVIDENCE COVERAGE</span><strong id="coverage">—</strong></div><div><span>CRITICAL FINDINGS</span><strong id="critical">—</strong></div></div>
+    </section>
+
+    <nav class="tabs" aria-label="Assessment views"><button class="tab active" data-view="controls">Control matrix <span id="tab-controls">10</span></button><button class="tab" data-view="evidence">Evidence explorer <span id="tab-evidence">10</span></button><button class="tab" data-view="architecture">System architecture</button></nav>
+    <section class="view active" id="view-controls"><div class="section-heading"><div><p class="eyebrow">CONTROL EFFECTIVENESS</p><h2>Assessment register</h2></div><p>Open a row to inspect requirement, state, evidence and remediation.</p></div><div class="table-wrap"><table><thead><tr><th>CONTROL</th><th>DOMAIN</th><th>REQUIREMENT</th><th>SEVERITY</th><th>RESULT</th><th>BLOCKING</th></tr></thead><tbody id="control-rows"></tbody></table></div></section>
+    <section class="view" id="view-evidence"><div class="section-heading"><div><p class="eyebrow">EVIDENCE PROVENANCE</p><h2>Evidence explorer</h2></div><p>Each evidence record is synthetic and linked to its control result.</p></div><div id="evidence-list" class="evidence-grid"></div></section>
+    <section class="view" id="view-architecture"><div class="section-heading"><div><p class="eyebrow">SYSTEM BOUNDARY</p><h2>Assessment architecture</h2></div><p>Control outcomes are derived from system state and evidence before they reach the decision layer.</p></div><div class="architecture"><div class="arch-node asset">EXAMPLE EUR TOKENISED FUND</div><div class="arch-lines"><div>NAV SOURCE</div><div>TOKENISATION PLATFORM</div><div>CUSTODIAN</div><div>SMART CONTRACT</div><div>PERMISSIONED LEDGER</div><div>CASH / SETTLEMENT RAIL</div></div><div class="arch-arrow">↓</div><div class="arch-node">CONTROL REGISTRY <small>requirements · owners · severity · freshness</small></div><div class="arch-arrow">↓</div><div class="arch-split"><div class="arch-node">SYSTEM STATE<small>observed configuration and operating state</small></div><div class="arch-node">EVIDENCE<small>source · observation date · status · reference</small></div></div><div class="arch-arrow">↓</div><div class="arch-node">CONTROL EVALUATION <small>PASS · PARTIAL · FAIL · ABSTAIN</small></div><div class="arch-arrow">↓</div><div class="arch-node final">GO <span>·</span> CONDITIONAL GO <span>·</span> NO-GO <span>·</span> ABSTAIN</div></div></section>
+    <section class="decision-trace"><div><p class="eyebrow">DECISION TRACE</p><h2>Why the result changed</h2></div><div id="trace"></div></section>
+    <footer><span>REFERENCE IMPLEMENTATION / SYNTHETIC DATA ONLY</span><a href="https://github.com/vishnugovind10/institutional-digital-asset-assurance">SOURCE REPOSITORY ↗</a><span>NOT PRODUCTION SECURITY SOFTWARE</span></footer>
+  </main>
+  <dialog id="detail-dialog"><button class="close" aria-label="Close">×</button><div id="detail-content"></div></dialog>
+  <script src="app.js" defer></script>
+</body>
+</html>
