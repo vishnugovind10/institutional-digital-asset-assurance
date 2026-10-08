@@ -46,7 +46,7 @@ function renderEvidence(controls) {
   document.querySelector('#evidence-list').innerHTML = records.map(({ control, ...item }) => `<article class="evidence-card">
     <div class="evidence-meta"><span>${escapeHtml(item.id)} / ${escapeHtml(control.id)}</span><span class="pill ${item.status.toLowerCase()}">${escapeHtml(item.status)}</span></div>
     <h3>${escapeHtml(item.source)}</h3><p>Supports: ${escapeHtml(control.requirement)}</p>
-    <div class="evidence-meta"><span>OBSERVED ${escapeHtml(item.observed_at)}</span><span>${escapeHtml(control.status)}</span></div>
+    <div class="evidence-meta"><span>OBSERVED ${escapeHtml(item.observed_at)}</span><span>${item.status === 'STALE' ? `STALE · ${item.age_days}D / ${item.freshness_days}D LIMIT` : escapeHtml(control.status)}</span></div>
     <p>Integrity reference: <code>${escapeHtml(item.reference)}</code></p></article>`).join('');
 }
 
@@ -62,7 +62,7 @@ function renderTrace(report) {
 
 function showControl(control) {
   const evidence = control.evidence.map((item) => `<div class="detail-box"><strong>${escapeHtml(item.id)} — ${escapeHtml(item.status)}</strong><br>${escapeHtml(item.source)} · observed ${escapeHtml(item.observed_at)}<br><code>${escapeHtml(item.reference)}</code></div>`).join('') || '<div class="detail-box">No linked evidence record.</div>';
-  const stale = control.stale_evidence.length ? `<p>Stale references: ${escapeHtml(control.stale_evidence.join(', '))}. Assurance is not inferred from stale evidence.</p>` : '';
+  const stale = control.stale_details.length ? `<p>${control.stale_details.map((item) => `${escapeHtml(item.id)} is ${item.age_days} days old; freshness limit is ${item.freshness_days} days.`).join(' ')} The assurance engine cannot infer control effectiveness from stale evidence.</p>` : '';
   document.querySelector('#detail-content').innerHTML = `<span class="pill ${control.status.toLowerCase()}">${escapeHtml(control.status)}</span><h2>${escapeHtml(control.id)} · ${escapeHtml(control.name)}</h2><p>${escapeHtml(control.requirement)}</p><div class="detail-box"><strong>Owner</strong> ${escapeHtml(control.owner)}<br><strong>Severity</strong> ${escapeHtml(control.severity)} · <strong>Blocking</strong> ${control.blocking ? 'Yes' : 'No'}<br><strong>Observed state</strong> <code>${escapeHtml(String(control.system_state))}</code> · expected <code>${escapeHtml(control.expected_state)}</code></div><div class="detail-box"><strong>Finding</strong><br>${escapeHtml(control.finding)}</div>${stale}${evidence}<div class="detail-box"><strong>Remediation</strong><br>${escapeHtml(control.remediation)}</div>`;
   document.querySelector('#detail-dialog').showModal();
 }

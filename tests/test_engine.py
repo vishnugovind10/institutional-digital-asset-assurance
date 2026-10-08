@@ -30,6 +30,10 @@ def test_stale_critical_evidence_abstains_without_inference() -> None:
     control = next(item for item in report["controls"] if item["id"] == "CU-001")
     assert control["status"] == "ABSTAIN"
     assert control["stale_evidence"] == ["EV-CU-001"]
+    assert control["stale_details"] == [{"id": "EV-CU-001", "age_days": 47, "freshness_days": 30}]
+    assert control["evidence"][0]["status"] == "STALE"
+    assert "47 days old" in control["finding"]
+    assert "cannot infer control effectiveness" in control["finding"]
     assert report["evidence_coverage_percent"] < 100
 
 

@@ -11,7 +11,7 @@ Each control declares a required state, owner, severity, blocking flag, evidence
 
 Evidence fixtures recognize `VERIFIED`, `ASSERTED`, `PARTIAL`, `FAILED`, `STALE` and `MISSING`. Assertions and partial evidence produce a partial result; failed evidence produces a control failure; stale or missing evidence follows the freshness/uncertainty rule.
 
-Evidence age is measured in whole calendar days from `observed_at` to assessment `as_of`. An item older than the control's `freshness_days` is stale. A missing or stale critical item yields `ABSTAIN`; the engine never turns missing evidence into a pass.
+Evidence age is measured in whole calendar days from `observed_at` to assessment `as_of`. An item older than the control's `freshness_days` is stale. Evaluated reports relabel the evidence status `STALE` and include its age and freshness limit. A missing or stale critical item yields `ABSTAIN`; the engine never turns missing evidence into a pass.
 
 ## Decision precedence
 

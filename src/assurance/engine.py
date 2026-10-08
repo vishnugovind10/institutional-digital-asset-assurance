@@ -43,6 +43,17 @@ def assess(scenario: dict[str, Any], *, today: date | None = None) -> dict[str, 
         missing = [eid for eid in control.get("evidence_ids", []) if eid not in evidence_by_id]
         missing.extend(item["id"] for item in evidence if item["status"] == "MISSING")
         stale = [item for item in evidence if item["status"] == "STALE" or (as_of - _parse_date(item["observed_at"])).days > control["freshness_days"]]
+        stale_ids = {item["id"] for item in stale}
+        evaluated_evidence = [
+            {
+                **item,
+                "declared_status": item["status"],
+                "status": "STALE" if item["id"] in stale_ids else item["status"],
+                "age_days": (as_of - _parse_date(item["observed_at"])).days,
+                "freshness_days": control["freshness_days"],
+            }
+            for item in evidence
+        ]
         failed_evidence = [item for item in evidence if item["status"] == "FAILED"]
         actual = scenario.get("system_state", {}).get(control["state_key"])
         expected = control["expected_state"]
@@ -54,7 +65,16 @@ def assess(scenario: dict[str, Any], *, today: date | None = None) -> dict[str, 
             status, finding = "FAIL", "Available state or evidence demonstrates the requirement is not met."
         elif stale or missing:
             status = "ABSTAIN" if control["severity"] == "CRITICAL" else "PARTIAL"
-            finding = "Evidence is stale or missing; control effectiveness is not inferred."
+            if stale:
+                oldest = max(stale, key=lambda item: as_of - _parse_date(item["observed_at"]))
+                age = (as_of - _parse_date(oldest["observed_at"])).days
+                finding = (
+                    f"Evidence {oldest['id']} is {age} days old; the control freshness threshold is "
+                    f"{control['freshness_days']} days. The assurance engine cannot infer control "
+                    "effectiveness from stale evidence."
+                )
+            else:
+                finding = "Required evidence is missing; the assurance engine cannot infer control effectiveness."
         elif any(item["status"] in {"PARTIAL", "ASSERTED"} for item in evidence):
             status, finding = "PARTIAL", "Evidence supports only part of the requirement."
         else:
@@ -65,9 +85,14 @@ def assess(scenario: dict[str, Any], *, today: date | None = None) -> dict[str, 
             "status": status,
             "finding": finding,
             "system_state": actual,
-            "evidence": evidence,
+            "evidence": evaluated_evidence,
             "missing_evidence": missing,
             "stale_evidence": [item["id"] for item in stale],
+            "stale_details": [
+                {"id": item["id"], "age_days": (as_of - _parse_date(item["observed_at"])).days,
+                 "freshness_days": control["freshness_days"]}
+                for item in stale
+            ],
             "state_conflict": conflict,
         })
 

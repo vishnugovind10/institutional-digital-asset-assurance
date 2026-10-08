@@ -15,6 +15,9 @@
       "domain": "Smart Contract",
       "evidence": [
         {
+          "age_days": 7,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
           "id": "EV-SC-001",
           "observed_at": "2026-10-01",
           "reference": "sha256:demo-sc001",
@@ -35,6 +38,7 @@
       "remediation": "Move upgrades behind the approved multi-party change process and retain execution evidence.",
       "requirement": "Upgrade authority is controlled by a governed, multi-party process.",
       "severity": "CRITICAL",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "upgrade_authority",
@@ -46,6 +50,9 @@
       "domain": "Custody",
       "evidence": [
         {
+          "age_days": 6,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
           "id": "EV-CU-001",
           "observed_at": "2026-10-02",
           "reference": "sha256:demo-cu001",
@@ -66,6 +73,7 @@
       "remediation": "Resolve custody evidence gaps and independently verify segregation.",
       "requirement": "Custody authorization and asset segregation are evidenced.",
       "severity": "CRITICAL",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "custody_authorization",
@@ -77,6 +85,9 @@
       "domain": "Tokenisation",
       "evidence": [
         {
+          "age_days": 5,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
           "id": "EV-TF-001",
           "observed_at": "2026-10-03",
           "reference": "sha256:demo-tf001",
@@ -97,6 +108,7 @@
       "remediation": "Reinstate and validate transfer restrictions before issuance.",
       "requirement": "Restricted transfers are checked against the approved allowlist.",
       "severity": "CRITICAL",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "transfer_control",
@@ -108,6 +120,9 @@
       "domain": "Governance",
       "evidence": [
         {
+          "age_days": 4,
+          "declared_status": "VERIFIED",
+          "freshness_days": 7,
           "id": "EV-NAV-001",
           "observed_at": "2026-10-04",
           "reference": "sha256:demo-nav001",
@@ -128,6 +143,7 @@
       "remediation": "Obtain a current approved-source attestation.",
       "requirement": "The NAV source is approved and within its evidence freshness window.",
       "severity": "HIGH",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "nav_source",
@@ -139,6 +155,9 @@
       "domain": "Blockchain",
       "evidence": [
         {
+          "age_days": 7,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
           "id": "EV-BC-001",
           "observed_at": "2026-10-01",
           "reference": "sha256:demo-bc001",
@@ -159,6 +178,7 @@
       "remediation": "Document finality thresholds and monitoring ownership.",
       "requirement": "Finality assumptions are documented and observable for this deployment.",
       "severity": "HIGH",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "finality_model",
@@ -170,6 +190,9 @@
       "domain": "Settlement",
       "evidence": [
         {
+          "age_days": 3,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
           "id": "EV-ST-001",
           "observed_at": "2026-10-05",
           "reference": "sha256:demo-st001",
@@ -190,6 +213,7 @@
       "remediation": "Reconcile asset and cash legs and evidence the recovery path.",
       "requirement": "Asset and cash legs reconcile to the same settlement outcome.",
       "severity": "CRITICAL",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "settlement_integrity",
@@ -201,6 +225,9 @@
       "domain": "Third Party",
       "evidence": [
         {
+          "age_days": 18,
+          "declared_status": "VERIFIED",
+          "freshness_days": 90,
           "id": "EV-TP-001",
           "observed_at": "2026-09-20",
           "reference": "sha256:demo-tp001",
@@ -221,6 +248,7 @@
       "remediation": "Obtain current provider assurance evidence or record a time-bound exception.",
       "requirement": "Required provider assurance evidence is available and current.",
       "severity": "HIGH",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "provider_assurance",
@@ -232,6 +260,9 @@
       "domain": "Governance",
       "evidence": [
         {
+          "age_days": 7,
+          "declared_status": "PARTIAL",
+          "freshness_days": 90,
           "id": "EV-GV-001",
           "observed_at": "2026-10-01",
           "reference": "sha256:demo-gv001",
@@ -252,6 +283,7 @@
       "remediation": "Record accountable approval and change ownership.",
       "requirement": "Material changes require recorded approval and ownership.",
       "severity": "HIGH",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "change_approval",
@@ -263,6 +295,9 @@
       "domain": "Evidence",
       "evidence": [
         {
+          "age_days": 2,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
           "id": "EV-EV-001",
           "observed_at": "2026-10-06",
           "reference": "sha256:demo-ev001",
@@ -283,6 +318,7 @@
       "remediation": "Re-issue evidence references with integrity identifiers.",
       "requirement": "Evidence references have deterministic integrity identifiers.",
       "severity": "HIGH",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "evidence_integrity",
@@ -294,6 +330,9 @@
       "domain": "Operations",
       "evidence": [
         {
+          "age_days": 10,
+          "declared_status": "VERIFIED",
+          "freshness_days": 90,
           "id": "EV-OP-001",
           "observed_at": "2026-09-28",
           "reference": "sha256:demo-op001",
@@ -314,6 +353,7 @@
       "remediation": "Exercise the recovery path and retain the outcome record.",
       "requirement": "An operational recovery path has an accountable owner and exercise evidence.",
       "severity": "HIGH",
+      "stale_details": [],
       "stale_evidence": [],
       "state_conflict": false,
       "state_key": "recovery_exercised",
