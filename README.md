@@ -2,7 +2,7 @@
 
 > Executable assurance framework for evaluating institutional digital-asset controls and translating evidence into explicit go-live decisions.
 
-**Live demo:** Deployment is being configured; a public link will be added after the console is verified. Reference implementation / architecture demonstration using synthetic data.
+**[Open Live Assurance Console](https://vishnugovind10.github.io/institutional-digital-asset-assurance/)** · Reference implementation / architecture demonstration using synthetic data.
 
 ## Why this exists
 
