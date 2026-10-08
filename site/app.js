@@ -24,12 +24,27 @@ function render() {
   document.querySelector('#count-fail').textContent = report.summary.FAIL;
   document.querySelector('#coverage').textContent = `${report.evidence_coverage_percent}%`;
   document.querySelector('#critical').textContent = report.critical_findings.length;
+  renderAssuranceOverview(report);
   document.querySelector('#tab-controls').textContent = report.control_count;
   document.querySelector('#tab-evidence').textContent = report.controls.reduce((sum, control) => sum + control.evidence.length, 0);
   document.querySelectorAll('[data-scenario]').forEach((button) => button.classList.toggle('active', button.dataset.scenario === report.scenario_key));
   renderControls(report.controls);
   renderEvidence(report.controls);
   renderTrace(report);
+}
+
+function renderAssuranceOverview(report) {
+  const risk = report.risk_assessment;
+  document.querySelector('#risk-summary').innerHTML = Object.entries(risk.summary)
+    .map(([level, count]) => `<div><span class="risk-dot ${level.toLowerCase()}"></span><strong>${escapeHtml(level)}</strong><b>${count}</b></div>`).join('');
+  document.querySelector('#lifecycle').innerHTML = report.lifecycle
+    .map((step, index) => `<div class="lifecycle-step"><span>${String(index + 1).padStart(2, '0')}</span>${escapeHtml(step)}</div>`).join('');
+  document.querySelector('#third-party-register').innerHTML = report.third_party_assurance.map((provider) => `
+    <article class="provider-row"><div><strong>${escapeHtml(provider.provider)}</strong><span>${escapeHtml(provider.category)} · ${escapeHtml(provider.criticality)}</span></div>
+    <span class="pill ${provider.evidence_freshness_status.toLowerCase()}">${escapeHtml(provider.evidence_freshness_status)}</span>
+    <p>${escapeHtml(provider.concentration_dependency)} · Evidence ${escapeHtml(provider.evidence_freshness)} (${provider.evidence_age_days}d / ${provider.freshness_days}d) · Materiality ${escapeHtml(provider.materiality)}</p>
+    ${provider.exception ? `<p class="exception">Exception: ${escapeHtml(provider.exception)}</p>` : ''}
+    <p>Follow-up: ${escapeHtml(provider.remediation)}</p></article>`).join('');
 }
 
 function renderControls(controls) {

@@ -8,8 +8,16 @@
   owner: Tokenisation platform
   state_key: upgrade_authority
   expected_state: governed_multisig
-  remediation: Move upgrades behind the approved multi-party change process and retain execution evidence.
-  evidence_ids: [EV-SC-001]
+  remediation: Move upgrades behind the approved multi-party change process and retain
+    execution evidence.
+  evidence_ids:
+  - EV-SC-001
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Blocking failure yields NO-GO; uncertainty remains visible in the
+    decision trace.
+  governance_objectives:
+  - Contract change authorization
 - id: CU-001
   domain: Custody
   name: Authorization and segregation
@@ -21,7 +29,14 @@
   state_key: custody_authorization
   expected_state: authorized_and_segregated
   remediation: Resolve custody evidence gaps and independently verify segregation.
-  evidence_ids: [EV-CU-001]
+  evidence_ids:
+  - EV-CU-001
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Blocking failure yields NO-GO; uncertainty remains visible in the
+    decision trace.
+  governance_objectives:
+  - Key custody governance
 - id: TF-001
   domain: Tokenisation
   name: Transfer restrictions
@@ -33,7 +48,14 @@
   state_key: transfer_control
   expected_state: allowlist_enforced
   remediation: Reinstate and validate transfer restrictions before issuance.
-  evidence_ids: [EV-TF-001]
+  evidence_ids:
+  - EV-TF-001
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Blocking failure yields NO-GO; uncertainty remains visible in the
+    decision trace.
+  governance_objectives:
+  - Investor protection controls
 - id: NAV-001
   domain: Governance
   name: NAV source freshness
@@ -45,7 +67,14 @@
   state_key: nav_source
   expected_state: approved_source
   remediation: Obtain a current approved-source attestation.
-  evidence_ids: [EV-NAV-001]
+  evidence_ids:
+  - EV-NAV-001
+  inherent_risk: MEDIUM
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Valuation governance
 - id: BC-001
   domain: Blockchain
   name: Finality assumptions
@@ -57,7 +86,14 @@
   state_key: finality_model
   expected_state: documented_and_monitored
   remediation: Document finality thresholds and monitoring ownership.
-  evidence_ids: [EV-BC-001]
+  evidence_ids:
+  - EV-BC-001
+  inherent_risk: MEDIUM
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Settlement finality governance
 - id: ST-001
   domain: Settlement
   name: Delivery-versus-payment integrity
@@ -69,7 +105,14 @@
   state_key: settlement_integrity
   expected_state: atomic_or_reconciled
   remediation: Reconcile asset and cash legs and evidence the recovery path.
-  evidence_ids: [EV-ST-001]
+  evidence_ids:
+  - EV-ST-001
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Blocking failure yields NO-GO; uncertainty remains visible in the
+    decision trace.
+  governance_objectives:
+  - Settlement integrity
 - id: TP-001
   domain: Third Party
   name: Platform assurance
@@ -81,7 +124,14 @@
   state_key: provider_assurance
   expected_state: current_assurance
   remediation: Obtain current provider assurance evidence or record a time-bound exception.
-  evidence_ids: [EV-TP-001]
+  evidence_ids:
+  - EV-TP-001
+  inherent_risk: MEDIUM
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Third-party assurance oversight
 - id: GV-001
   domain: Governance
   name: Change approval
@@ -93,7 +143,14 @@
   state_key: change_approval
   expected_state: approval_recorded
   remediation: Record accountable approval and change ownership.
-  evidence_ids: [EV-GV-001]
+  evidence_ids:
+  - EV-GV-001
+  inherent_risk: MEDIUM
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Accountability and approval
 - id: EV-001
   domain: Evidence
   name: Evidence integrity
@@ -105,11 +162,19 @@
   state_key: evidence_integrity
   expected_state: integrity_references_present
   remediation: Re-issue evidence references with integrity identifiers.
-  evidence_ids: [EV-EV-001]
+  evidence_ids:
+  - EV-EV-001
+  inherent_risk: MEDIUM
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Evidence traceability
 - id: OP-001
   domain: Operations
   name: Incident recovery
-  requirement: An operational recovery path has an accountable owner and exercise evidence.
+  requirement: An operational recovery path has an accountable owner and exercise
+    evidence.
   severity: HIGH
   freshness_days: 90
   blocking: false
@@ -117,4 +182,152 @@
   state_key: recovery_exercised
   expected_state: exercised
   remediation: Exercise the recovery path and retain the outcome record.
-  evidence_ids: [EV-OP-001]
+  evidence_ids:
+  - EV-OP-001
+  inherent_risk: MEDIUM
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Operational resilience
+- id: SC-002
+  domain: Smart Contract
+  name: Privileged access
+  requirement: Privileged access is limited, reviewed and attributable.
+  severity: HIGH
+  freshness_days: 30
+  blocking: false
+  owner: Tokenisation platform
+  state_key: privileged_access
+  expected_state: least_privilege_reviewed
+  remediation: Limit privileged roles, review membership and retain access-change
+    evidence.
+  evidence_ids:
+  - EV-SC-002
+  inherent_risk: MEDIUM
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Contract change authorization
+- id: SC-003
+  domain: Smart Contract
+  name: Emergency upgrade path
+  requirement: Emergency upgrades require constrained authority and post-event review.
+  severity: CRITICAL
+  freshness_days: 30
+  blocking: true
+  owner: Tokenisation platform
+  state_key: emergency_upgrade
+  expected_state: constrained_and_reviewed
+  remediation: Constrain emergency authority, define activation criteria and exercise
+    the review path.
+  evidence_ids:
+  - EV-SC-003
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Blocking failure yields NO-GO; uncertainty remains visible in the
+    decision trace.
+  governance_objectives:
+  - Emergency change governance
+- id: SC-004
+  domain: Smart Contract
+  name: Contract change control
+  requirement: Deployed contract changes are approved, tested and traceable.
+  severity: HIGH
+  freshness_days: 30
+  blocking: false
+  owner: Tokenisation platform
+  state_key: contract_change
+  expected_state: approved_tested_and_traceable
+  remediation: Require approved change records, independent test evidence and deployment
+    traceability.
+  evidence_ids:
+  - EV-SC-004
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Contract change authorization
+- id: BC-002
+  domain: Blockchain
+  name: Node and RPC dependency
+  requirement: Critical node and RPC dependencies have monitored availability and
+    fallback arrangements.
+  severity: HIGH
+  freshness_days: 30
+  blocking: false
+  owner: Network operations
+  state_key: node_rpc_dependency
+  expected_state: monitored_with_fallback
+  remediation: Document provider dependencies, monitor service and validate fallback
+    arrangements.
+  evidence_ids:
+  - EV-BC-002
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Operational resilience
+- id: BC-003
+  domain: Blockchain
+  name: Finality and reorganization
+  requirement: Finality thresholds and reorganization response are monitored and operationalized.
+  severity: CRITICAL
+  freshness_days: 30
+  blocking: true
+  owner: Network operations
+  state_key: finality_reorg
+  expected_state: thresholds_monitored_and_response_defined
+  remediation: Set network-specific finality thresholds and exercise the reorganization
+    response.
+  evidence_ids:
+  - EV-BC-003
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Blocking failure yields NO-GO; uncertainty remains visible in the
+    decision trace.
+  governance_objectives:
+  - Settlement finality governance
+- id: SEC-001
+  domain: Security
+  name: Incident response
+  requirement: Security incident response is owned, exercised and linked to escalation
+    channels.
+  severity: HIGH
+  freshness_days: 90
+  blocking: false
+  owner: Security operations
+  state_key: incident_response
+  expected_state: owned_and_exercised
+  remediation: Exercise incident escalation and recovery with named accountable owners.
+  evidence_ids:
+  - EV-SEC-001
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Open findings may produce CONDITIONAL GO or ABSTAIN under the shared
+    decision rules.
+  governance_objectives:
+  - Operational resilience
+- id: SEC-002
+  domain: Security
+  name: Key management
+  requirement: Administrative and signing keys have documented lifecycle controls
+    and recovery evidence.
+  severity: CRITICAL
+  freshness_days: 30
+  blocking: true
+  owner: Security operations
+  state_key: key_management
+  expected_state: lifecycle_controlled_and_recoverable
+  remediation: Verify key generation, access, rotation, backup and recovery procedures.
+  evidence_ids:
+  - EV-SEC-002
+  inherent_risk: HIGH
+  risk_treatment: MITIGATE
+  go_live_impact: Blocking failure yields NO-GO; uncertainty remains visible in the
+    decision trace.
+  governance_objectives:
+  - Key custody governance

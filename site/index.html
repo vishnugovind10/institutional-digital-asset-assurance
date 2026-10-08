@@ -21,8 +21,14 @@
     <section class="scenario-bar" aria-label="Scenario simulator">
       <div><span class="eyebrow">SCENARIO SIMULATOR</span><strong>Change the assessment conditions</strong></div>
       <div class="scenario-buttons">
-        <button data-scenario="go">Baseline</button><button data-scenario="no_go">Inject contract failure</button><button data-scenario="abstain">Age custody evidence</button><button data-scenario="conditional_go">Open remediation</button>
+        <button data-scenario="go">Fund baseline</button><button data-scenario="crypto_etp">Crypto ETP</button><button data-scenario="no_go">Inject contract failure</button><button data-scenario="abstain">Age custody evidence</button><button data-scenario="conditional_go">Open remediation</button>
       </div>
+    </section>
+
+    <section class="assurance-band" aria-label="Risk and assurance overview">
+      <article class="overview-card"><p class="eyebrow">QUALITATIVE RESIDUAL RISK</p><div id="risk-summary" class="risk-summary"></div><p class="muted">Categorical mapping from control status. No numeric score or probability is calculated.</p></article>
+      <article class="overview-card"><p class="eyebrow">PRODUCT LIFECYCLE</p><div id="lifecycle" class="lifecycle"></div></article>
+      <article class="overview-card third-party-card"><p class="eyebrow">THIRD-PARTY ASSURANCE REGISTER</p><div id="third-party-register" class="third-party-register"></div></article>
     </section>
 
     <section class="decision-panel" aria-live="polite">

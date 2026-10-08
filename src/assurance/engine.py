@@ -10,6 +10,48 @@ import yaml
 
 SCENARIO_DIR = Path(__file__).resolve().parents[2] / "scenarios"
 
+RISK_ORDER = ("LOW", "MEDIUM", "HIGH", "CRITICAL")
+
+
+def _risk_assessment(controls: list[dict[str, Any]]) -> dict[str, Any]:
+    """Derive qualitative residual risk from explicit control outcomes."""
+    assessments = []
+    for control in controls:
+        inherent = control["inherent_risk"]
+        index = RISK_ORDER.index(inherent)
+        status = control["status"]
+        if status == "PASS":
+            residual = RISK_ORDER[max(0, index - 1)]
+            effectiveness = "EFFECTIVE"
+        elif status == "PARTIAL":
+            residual = inherent
+            effectiveness = "PARTIALLY EFFECTIVE"
+        elif status == "FAIL":
+            residual = RISK_ORDER[min(len(RISK_ORDER) - 1, index + 1)]
+            effectiveness = "INEFFECTIVE"
+        else:
+            residual = inherent
+            effectiveness = "UNDETERMINED"
+        assessments.append({
+            "control_id": control["id"],
+            "inherent_risk": inherent,
+            "control_effectiveness": effectiveness,
+            "residual_risk": residual,
+            "treatment": control["risk_treatment"],
+            "go_live_impact": control["go_live_impact"],
+            "rationale": {
+                "PASS": "Current linked evidence supports the control; residual category is reduced by one level.",
+                "PARTIAL": "Evidence supports only part of the control; no residual-risk reduction is applied.",
+                "FAIL": "A requirement failure is demonstrated; residual category is increased by one level.",
+                "ABSTAIN": "Evidence or state is uncertain; residual risk remains at inherent level and effectiveness is undetermined.",
+            }[status],
+        })
+    return {
+        "method": "Categorical status mapping; no numeric score or probabilistic estimate.",
+        "summary": {level: sum(item["residual_risk"] == level for item in assessments) for level in RISK_ORDER},
+        "controls": assessments,
+    }
+
 
 def load_scenario(name: str) -> dict[str, Any]:
     """Load a named synthetic scenario, rejecting path traversal and bad shapes."""
@@ -122,6 +164,18 @@ def assess(scenario: dict[str, Any], *, today: date | None = None) -> dict[str, 
         for item in results if item["status"] in {"PARTIAL", "FAIL"}
     ]
     abstention_reasons = [f"{item['id']}: {item['finding']}" for item in abstentions]
+    risk = _risk_assessment(results)
+    third_party_assurance = []
+    for provider in scenario.get("third_party_assurance", []):
+        observed = _parse_date(provider["evidence_freshness"])
+        age = (as_of - observed).days
+        freshness_days = provider.get("freshness_days", 90)
+        third_party_assurance.append({
+            **provider,
+            "evidence_age_days": age,
+            "freshness_days": freshness_days,
+            "evidence_freshness_status": "STALE" if age > freshness_days else provider["assurance_status"],
+        })
     return {
         "product": scenario["product"],
         "scenario": scenario["scenario"],
@@ -139,5 +193,20 @@ def assess(scenario: dict[str, Any], *, today: date | None = None) -> dict[str, 
         "conditions": conditions,
         "controls": results,
         "dependencies": scenario.get("dependencies", []),
+        "risk_assessment": risk,
+        "third_party_assurance": third_party_assurance,
+        "governance_objectives": [
+            {
+                "objective": objective,
+                "control_ids": [item["id"] for item in results if objective in item["governance_objectives"]],
+                "evidence_ids": sorted({
+                    evidence["id"] for item in results if objective in item["governance_objectives"]
+                    for evidence in item["evidence"]
+                }),
+                "decision_impacts": sorted({item["status"] for item in results if objective in item["governance_objectives"]}),
+            }
+            for objective in sorted({objective for item in results for objective in item["governance_objectives"]})
+        ],
+        "lifecycle": scenario.get("lifecycle", ["Design", "Build", "Validate", "Operate"]),
         "synthetic": True,
     }

@@ -89,3 +89,37 @@ def test_path_traversal_and_unknown_scenario_are_rejected() -> None:
         load_scenario("../go")
     with pytest.raises(ValueError):
         load_scenario("unknown")
+
+
+def test_security_controls_risk_mapping_and_governance_trace_are_exposed() -> None:
+    report = assess(load_scenario("go"))
+    ids = {item["id"] for item in report["controls"]}
+    assert {"SC-002", "SC-003", "SC-004", "BC-002", "BC-003", "SEC-001", "SEC-002"} <= ids
+    security = next(item for item in report["risk_assessment"]["controls"] if item["control_id"] == "SC-003")
+    assert security["inherent_risk"] == "HIGH"
+    assert security["control_effectiveness"] == "EFFECTIVE"
+    assert security["residual_risk"] == "MEDIUM"
+    assert "numeric score" in report["risk_assessment"]["method"]
+    assert all(objective["control_ids"] and objective["evidence_ids"] for objective in report["governance_objectives"])
+
+
+def test_risk_uncertainty_is_not_converted_to_effectiveness() -> None:
+    scenario = deepcopy(load_scenario("go"))
+    scenario["state_conflicts"] = ["key_management"]
+    report = assess(scenario)
+    item = next(item for item in report["risk_assessment"]["controls"] if item["control_id"] == "SEC-002")
+    assert item["control_effectiveness"] == "UNDETERMINED"
+    assert item["residual_risk"] == item["inherent_risk"]
+    assert report["decision"] == "ABSTAIN"
+
+
+def test_crypto_etp_uses_shared_engine_and_provider_register() -> None:
+    report = assess(load_scenario("crypto_etp"))
+    assert report["product"] == "Example Crypto ETP"
+    assert report["decision"] == "GO"
+    assert len(report["controls"]) == len(assess(load_scenario("go"))["controls"])
+    categories = {item["category"] for item in report["third_party_assurance"]}
+    assert categories == {"Custodian", "Tokenisation platform", "Exchange/trading venue", "Blockchain infrastructure provider"}
+    venue = next(item for item in report["third_party_assurance"] if item["category"] == "Exchange/trading venue")
+    assert venue["evidence_freshness_status"] == "PARTIAL"
+    assert venue["exception"]

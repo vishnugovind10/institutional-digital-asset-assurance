@@ -1,7 +1,5 @@
 {
-  "abstention_reasons": [
-    "CU-001: Evidence EV-CU-001 is 47 days old; the control freshness threshold is 30 days. The assurance engine cannot infer control effectiveness from stale evidence."
-  ],
+  "abstention_reasons": [],
   "as_of": "2026-10-08",
   "conditions": [],
   "control_count": 17,
@@ -52,21 +50,21 @@
       "domain": "Custody",
       "evidence": [
         {
-          "age_days": 47,
+          "age_days": 6,
           "declared_status": "VERIFIED",
           "freshness_days": 30,
           "id": "EV-CU-001",
-          "observed_at": "2026-08-22",
+          "observed_at": "2026-10-02",
           "reference": "sha256:demo-cu001",
           "source": "Synthetic custody attestation",
-          "status": "STALE"
+          "status": "VERIFIED"
         }
       ],
       "evidence_ids": [
         "EV-CU-001"
       ],
       "expected_state": "authorized_and_segregated",
-      "finding": "Evidence EV-CU-001 is 47 days old; the control freshness threshold is 30 days. The assurance engine cannot infer control effectiveness from stale evidence.",
+      "finding": "Required state and current evidence are consistent.",
       "freshness_days": 30,
       "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
       "governance_objectives": [
@@ -81,19 +79,11 @@
       "requirement": "Custody authorization and asset segregation are evidenced.",
       "risk_treatment": "MITIGATE",
       "severity": "CRITICAL",
-      "stale_details": [
-        {
-          "age_days": 47,
-          "freshness_days": 30,
-          "id": "EV-CU-001"
-        }
-      ],
-      "stale_evidence": [
-        "EV-CU-001"
-      ],
+      "stale_details": [],
+      "stale_evidence": [],
       "state_conflict": false,
       "state_key": "custody_authorization",
-      "status": "ABSTAIN",
+      "status": "PASS",
       "system_state": "authorized_and_segregated"
     },
     {
@@ -712,18 +702,17 @@
       "system_state": "lifecycle_controlled_and_recoverable"
     }
   ],
-  "critical_findings": [
-    "CU-001"
-  ],
-  "decision": "ABSTAIN",
+  "critical_findings": [],
+  "decision": "GO",
   "dependencies": [
-    "Fund administrator",
-    "Tokenisation platform",
-    "Custodian",
-    "Permissioned ledger",
+    "Example ETP issuer",
+    "Example Custodian",
+    "Example Tokenisation Service",
+    "Example Trading Venue",
+    "Example Ledger Infrastructure",
     "Cash settlement rail"
   ],
-  "evidence_coverage_percent": 94,
+  "evidence_coverage_percent": 100,
   "failed_controls": [],
   "governance_objectives": [
     {
@@ -796,7 +785,6 @@
         "SEC-002"
       ],
       "decision_impacts": [
-        "ABSTAIN",
         "PASS"
       ],
       "evidence_ids": [
@@ -873,16 +861,16 @@
     }
   ],
   "lifecycle": [
-    "Design",
-    "Build",
-    "Security review",
-    "Operational readiness",
+    "Product design",
+    "Issuer and provider onboarding",
+    "Asset custody and issuance",
+    "Trading and settlement readiness",
     "Launch decision",
-    "Operate and monitor"
+    "Ongoing oversight"
   ],
   "partial_controls": [],
-  "product": "Example EUR Tokenised Fund",
-  "rationale": "Material evidence or system-state uncertainty prevents an assurance conclusion.",
+  "product": "Example Crypto ETP",
+  "rationale": "All in-scope controls pass with current evidence and consistent system state.",
   "risk_assessment": {
     "controls": [
       {
@@ -895,12 +883,12 @@
         "treatment": "MITIGATE"
       },
       {
-        "control_effectiveness": "UNDETERMINED",
+        "control_effectiveness": "EFFECTIVE",
         "control_id": "CU-001",
         "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
         "inherent_risk": "HIGH",
-        "rationale": "Evidence or state is uncertain; residual risk remains at inherent level and effectiveness is undetermined.",
-        "residual_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
         "treatment": "MITIGATE"
       },
       {
@@ -1042,18 +1030,18 @@
     "method": "Categorical status mapping; no numeric score or probabilistic estimate.",
     "summary": {
       "CRITICAL": 0,
-      "HIGH": 1,
+      "HIGH": 0,
       "LOW": 7,
-      "MEDIUM": 9
+      "MEDIUM": 10
     }
   },
-  "scenario": "ABSTAIN \u2014 custody evidence stale",
-  "scenario_key": "abstain",
+  "scenario": "GO \u2014 Example Crypto ETP baseline",
+  "scenario_key": "crypto_etp",
   "summary": {
-    "ABSTAIN": 1,
+    "ABSTAIN": 0,
     "FAIL": 0,
     "PARTIAL": 0,
-    "PASS": 16
+    "PASS": 17
   },
   "synthetic": true,
   "third_party_assurance": [

@@ -2,7 +2,7 @@
   "abstention_reasons": [],
   "as_of": "2026-10-08",
   "conditions": [],
-  "control_count": 10,
+  "control_count": 17,
   "controls": [
     {
       "blocking": true,
@@ -25,12 +25,18 @@
       "expected_state": "governed_multisig",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 30,
+      "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+      "governance_objectives": [
+        "Contract change authorization"
+      ],
       "id": "SC-001",
+      "inherent_risk": "HIGH",
       "missing_evidence": [],
       "name": "Upgrade authority",
       "owner": "Tokenisation platform",
       "remediation": "Move upgrades behind the approved multi-party change process and retain execution evidence.",
       "requirement": "Upgrade authority is controlled by a governed, multi-party process.",
+      "risk_treatment": "MITIGATE",
       "severity": "CRITICAL",
       "stale_details": [],
       "stale_evidence": [],
@@ -60,12 +66,18 @@
       "expected_state": "authorized_and_segregated",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 30,
+      "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+      "governance_objectives": [
+        "Key custody governance"
+      ],
       "id": "CU-001",
+      "inherent_risk": "HIGH",
       "missing_evidence": [],
       "name": "Authorization and segregation",
       "owner": "Custodian",
       "remediation": "Resolve custody evidence gaps and independently verify segregation.",
       "requirement": "Custody authorization and asset segregation are evidenced.",
+      "risk_treatment": "MITIGATE",
       "severity": "CRITICAL",
       "stale_details": [],
       "stale_evidence": [],
@@ -95,12 +107,18 @@
       "expected_state": "allowlist_enforced",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 30,
+      "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+      "governance_objectives": [
+        "Investor protection controls"
+      ],
       "id": "TF-001",
+      "inherent_risk": "HIGH",
       "missing_evidence": [],
       "name": "Transfer restrictions",
       "owner": "Tokenisation platform",
       "remediation": "Reinstate and validate transfer restrictions before issuance.",
       "requirement": "Restricted transfers are checked against the approved allowlist.",
+      "risk_treatment": "MITIGATE",
       "severity": "CRITICAL",
       "stale_details": [],
       "stale_evidence": [],
@@ -130,12 +148,18 @@
       "expected_state": "approved_source",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 7,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Valuation governance"
+      ],
       "id": "NAV-001",
+      "inherent_risk": "MEDIUM",
       "missing_evidence": [],
       "name": "NAV source freshness",
       "owner": "Fund administrator",
       "remediation": "Obtain a current approved-source attestation.",
       "requirement": "The NAV source is approved and within its evidence freshness window.",
+      "risk_treatment": "MITIGATE",
       "severity": "HIGH",
       "stale_details": [],
       "stale_evidence": [],
@@ -165,12 +189,18 @@
       "expected_state": "documented_and_monitored",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 30,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Settlement finality governance"
+      ],
       "id": "BC-001",
+      "inherent_risk": "MEDIUM",
       "missing_evidence": [],
       "name": "Finality assumptions",
       "owner": "Network operations",
       "remediation": "Document finality thresholds and monitoring ownership.",
       "requirement": "Finality assumptions are documented and observable for this deployment.",
+      "risk_treatment": "MITIGATE",
       "severity": "HIGH",
       "stale_details": [],
       "stale_evidence": [],
@@ -200,12 +230,18 @@
       "expected_state": "atomic_or_reconciled",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 30,
+      "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+      "governance_objectives": [
+        "Settlement integrity"
+      ],
       "id": "ST-001",
+      "inherent_risk": "HIGH",
       "missing_evidence": [],
       "name": "Delivery-versus-payment integrity",
       "owner": "Settlement operations",
       "remediation": "Reconcile asset and cash legs and evidence the recovery path.",
       "requirement": "Asset and cash legs reconcile to the same settlement outcome.",
+      "risk_treatment": "MITIGATE",
       "severity": "CRITICAL",
       "stale_details": [],
       "stale_evidence": [],
@@ -235,12 +271,18 @@
       "expected_state": "current_assurance",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 90,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Third-party assurance oversight"
+      ],
       "id": "TP-001",
+      "inherent_risk": "MEDIUM",
       "missing_evidence": [],
       "name": "Platform assurance",
       "owner": "Third-party risk",
       "remediation": "Obtain current provider assurance evidence or record a time-bound exception.",
       "requirement": "Required provider assurance evidence is available and current.",
+      "risk_treatment": "MITIGATE",
       "severity": "HIGH",
       "stale_details": [],
       "stale_evidence": [],
@@ -270,12 +312,18 @@
       "expected_state": "approval_recorded",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 90,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Accountability and approval"
+      ],
       "id": "GV-001",
+      "inherent_risk": "MEDIUM",
       "missing_evidence": [],
       "name": "Change approval",
       "owner": "Product governance",
       "remediation": "Record accountable approval and change ownership.",
       "requirement": "Material changes require recorded approval and ownership.",
+      "risk_treatment": "MITIGATE",
       "severity": "HIGH",
       "stale_details": [],
       "stale_evidence": [],
@@ -305,12 +353,18 @@
       "expected_state": "integrity_references_present",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 30,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Evidence traceability"
+      ],
       "id": "EV-001",
+      "inherent_risk": "MEDIUM",
       "missing_evidence": [],
       "name": "Evidence integrity",
       "owner": "Assurance owner",
       "remediation": "Re-issue evidence references with integrity identifiers.",
       "requirement": "Evidence references have deterministic integrity identifiers.",
+      "risk_treatment": "MITIGATE",
       "severity": "HIGH",
       "stale_details": [],
       "stale_evidence": [],
@@ -340,12 +394,18 @@
       "expected_state": "exercised",
       "finding": "Required state and current evidence are consistent.",
       "freshness_days": 90,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Operational resilience"
+      ],
       "id": "OP-001",
+      "inherent_risk": "MEDIUM",
       "missing_evidence": [],
       "name": "Incident recovery",
       "owner": "Service operations",
       "remediation": "Exercise the recovery path and retain the outcome record.",
       "requirement": "An operational recovery path has an accountable owner and exercise evidence.",
+      "risk_treatment": "MITIGATE",
       "severity": "HIGH",
       "stale_details": [],
       "stale_evidence": [],
@@ -353,6 +413,293 @@
       "state_key": "recovery_exercised",
       "status": "PASS",
       "system_state": "exercised"
+    },
+    {
+      "blocking": false,
+      "domain": "Smart Contract",
+      "evidence": [
+        {
+          "age_days": 7,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
+          "id": "EV-SC-002",
+          "observed_at": "2026-10-01",
+          "reference": "sha256:synthetic-ev-sc-002",
+          "source": "Synthetic privileged-role review",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-SC-002"
+      ],
+      "expected_state": "least_privilege_reviewed",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Contract change authorization"
+      ],
+      "id": "SC-002",
+      "inherent_risk": "MEDIUM",
+      "missing_evidence": [],
+      "name": "Privileged access",
+      "owner": "Tokenisation platform",
+      "remediation": "Limit privileged roles, review membership and retain access-change evidence.",
+      "requirement": "Privileged access is limited, reviewed and attributable.",
+      "risk_treatment": "MITIGATE",
+      "severity": "HIGH",
+      "stale_details": [],
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "privileged_access",
+      "status": "PASS",
+      "system_state": "least_privilege_reviewed"
+    },
+    {
+      "blocking": true,
+      "domain": "Smart Contract",
+      "evidence": [
+        {
+          "age_days": 7,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
+          "id": "EV-SC-003",
+          "observed_at": "2026-10-01",
+          "reference": "sha256:synthetic-ev-sc-003",
+          "source": "Synthetic emergency-upgrade exercise",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-SC-003"
+      ],
+      "expected_state": "constrained_and_reviewed",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+      "governance_objectives": [
+        "Emergency change governance"
+      ],
+      "id": "SC-003",
+      "inherent_risk": "HIGH",
+      "missing_evidence": [],
+      "name": "Emergency upgrade path",
+      "owner": "Tokenisation platform",
+      "remediation": "Constrain emergency authority, define activation criteria and exercise the review path.",
+      "requirement": "Emergency upgrades require constrained authority and post-event review.",
+      "risk_treatment": "MITIGATE",
+      "severity": "CRITICAL",
+      "stale_details": [],
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "emergency_upgrade",
+      "status": "PASS",
+      "system_state": "constrained_and_reviewed"
+    },
+    {
+      "blocking": false,
+      "domain": "Smart Contract",
+      "evidence": [
+        {
+          "age_days": 6,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
+          "id": "EV-SC-004",
+          "observed_at": "2026-10-02",
+          "reference": "sha256:synthetic-ev-sc-004",
+          "source": "Synthetic contract release record",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-SC-004"
+      ],
+      "expected_state": "approved_tested_and_traceable",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Contract change authorization"
+      ],
+      "id": "SC-004",
+      "inherent_risk": "HIGH",
+      "missing_evidence": [],
+      "name": "Contract change control",
+      "owner": "Tokenisation platform",
+      "remediation": "Require approved change records, independent test evidence and deployment traceability.",
+      "requirement": "Deployed contract changes are approved, tested and traceable.",
+      "risk_treatment": "MITIGATE",
+      "severity": "HIGH",
+      "stale_details": [],
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "contract_change",
+      "status": "PASS",
+      "system_state": "approved_tested_and_traceable"
+    },
+    {
+      "blocking": false,
+      "domain": "Blockchain",
+      "evidence": [
+        {
+          "age_days": 7,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
+          "id": "EV-BC-002",
+          "observed_at": "2026-10-01",
+          "reference": "sha256:synthetic-ev-bc-002",
+          "source": "Synthetic node/RPC dependency review",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-BC-002"
+      ],
+      "expected_state": "monitored_with_fallback",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Operational resilience"
+      ],
+      "id": "BC-002",
+      "inherent_risk": "HIGH",
+      "missing_evidence": [],
+      "name": "Node and RPC dependency",
+      "owner": "Network operations",
+      "remediation": "Document provider dependencies, monitor service and validate fallback arrangements.",
+      "requirement": "Critical node and RPC dependencies have monitored availability and fallback arrangements.",
+      "risk_treatment": "MITIGATE",
+      "severity": "HIGH",
+      "stale_details": [],
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "node_rpc_dependency",
+      "status": "PASS",
+      "system_state": "monitored_with_fallback"
+    },
+    {
+      "blocking": true,
+      "domain": "Blockchain",
+      "evidence": [
+        {
+          "age_days": 7,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
+          "id": "EV-BC-003",
+          "observed_at": "2026-10-01",
+          "reference": "sha256:synthetic-ev-bc-003",
+          "source": "Synthetic finality and reorganization exercise",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-BC-003"
+      ],
+      "expected_state": "thresholds_monitored_and_response_defined",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+      "governance_objectives": [
+        "Settlement finality governance"
+      ],
+      "id": "BC-003",
+      "inherent_risk": "HIGH",
+      "missing_evidence": [],
+      "name": "Finality and reorganization",
+      "owner": "Network operations",
+      "remediation": "Set network-specific finality thresholds and exercise the reorganization response.",
+      "requirement": "Finality thresholds and reorganization response are monitored and operationalized.",
+      "risk_treatment": "MITIGATE",
+      "severity": "CRITICAL",
+      "stale_details": [],
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "finality_reorg",
+      "status": "PASS",
+      "system_state": "thresholds_monitored_and_response_defined"
+    },
+    {
+      "blocking": false,
+      "domain": "Security",
+      "evidence": [
+        {
+          "age_days": 10,
+          "declared_status": "VERIFIED",
+          "freshness_days": 90,
+          "id": "EV-SEC-001",
+          "observed_at": "2026-09-28",
+          "reference": "sha256:synthetic-ev-sec-001",
+          "source": "Synthetic incident-response exercise",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-SEC-001"
+      ],
+      "expected_state": "owned_and_exercised",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 90,
+      "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+      "governance_objectives": [
+        "Operational resilience"
+      ],
+      "id": "SEC-001",
+      "inherent_risk": "HIGH",
+      "missing_evidence": [],
+      "name": "Incident response",
+      "owner": "Security operations",
+      "remediation": "Exercise incident escalation and recovery with named accountable owners.",
+      "requirement": "Security incident response is owned, exercised and linked to escalation channels.",
+      "risk_treatment": "MITIGATE",
+      "severity": "HIGH",
+      "stale_details": [],
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "incident_response",
+      "status": "PASS",
+      "system_state": "owned_and_exercised"
+    },
+    {
+      "blocking": true,
+      "domain": "Security",
+      "evidence": [
+        {
+          "age_days": 6,
+          "declared_status": "VERIFIED",
+          "freshness_days": 30,
+          "id": "EV-SEC-002",
+          "observed_at": "2026-10-02",
+          "reference": "sha256:synthetic-ev-sec-002",
+          "source": "Synthetic key lifecycle review",
+          "status": "VERIFIED"
+        }
+      ],
+      "evidence_ids": [
+        "EV-SEC-002"
+      ],
+      "expected_state": "lifecycle_controlled_and_recoverable",
+      "finding": "Required state and current evidence are consistent.",
+      "freshness_days": 30,
+      "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+      "governance_objectives": [
+        "Key custody governance"
+      ],
+      "id": "SEC-002",
+      "inherent_risk": "HIGH",
+      "missing_evidence": [],
+      "name": "Key management",
+      "owner": "Security operations",
+      "remediation": "Verify key generation, access, rotation, backup and recovery procedures.",
+      "requirement": "Administrative and signing keys have documented lifecycle controls and recovery evidence.",
+      "risk_treatment": "MITIGATE",
+      "severity": "CRITICAL",
+      "stale_details": [],
+      "stale_evidence": [],
+      "state_conflict": false,
+      "state_key": "key_management",
+      "status": "PASS",
+      "system_state": "lifecycle_controlled_and_recoverable"
     }
   ],
   "critical_findings": [],
@@ -366,16 +713,392 @@
   ],
   "evidence_coverage_percent": 100,
   "failed_controls": [],
+  "governance_objectives": [
+    {
+      "control_ids": [
+        "GV-001"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-GV-001"
+      ],
+      "objective": "Accountability and approval"
+    },
+    {
+      "control_ids": [
+        "SC-001",
+        "SC-002",
+        "SC-004"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-SC-001",
+        "EV-SC-002",
+        "EV-SC-004"
+      ],
+      "objective": "Contract change authorization"
+    },
+    {
+      "control_ids": [
+        "SC-003"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-SC-003"
+      ],
+      "objective": "Emergency change governance"
+    },
+    {
+      "control_ids": [
+        "EV-001"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-EV-001"
+      ],
+      "objective": "Evidence traceability"
+    },
+    {
+      "control_ids": [
+        "TF-001"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-TF-001"
+      ],
+      "objective": "Investor protection controls"
+    },
+    {
+      "control_ids": [
+        "CU-001",
+        "SEC-002"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-CU-001",
+        "EV-SEC-002"
+      ],
+      "objective": "Key custody governance"
+    },
+    {
+      "control_ids": [
+        "OP-001",
+        "BC-002",
+        "SEC-001"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-BC-002",
+        "EV-OP-001",
+        "EV-SEC-001"
+      ],
+      "objective": "Operational resilience"
+    },
+    {
+      "control_ids": [
+        "BC-001",
+        "BC-003"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-BC-001",
+        "EV-BC-003"
+      ],
+      "objective": "Settlement finality governance"
+    },
+    {
+      "control_ids": [
+        "ST-001"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-ST-001"
+      ],
+      "objective": "Settlement integrity"
+    },
+    {
+      "control_ids": [
+        "TP-001"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-TP-001"
+      ],
+      "objective": "Third-party assurance oversight"
+    },
+    {
+      "control_ids": [
+        "NAV-001"
+      ],
+      "decision_impacts": [
+        "PASS"
+      ],
+      "evidence_ids": [
+        "EV-NAV-001"
+      ],
+      "objective": "Valuation governance"
+    }
+  ],
+  "lifecycle": [
+    "Design",
+    "Build",
+    "Security review",
+    "Operational readiness",
+    "Launch decision",
+    "Operate and monitor"
+  ],
   "partial_controls": [],
   "product": "Example EUR Tokenised Fund",
   "rationale": "All in-scope controls pass with current evidence and consistent system state.",
+  "risk_assessment": {
+    "controls": [
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "SC-001",
+        "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "CU-001",
+        "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "TF-001",
+        "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "NAV-001",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "MEDIUM",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "LOW",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "BC-001",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "MEDIUM",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "LOW",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "ST-001",
+        "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "TP-001",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "MEDIUM",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "LOW",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "GV-001",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "MEDIUM",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "LOW",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "EV-001",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "MEDIUM",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "LOW",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "OP-001",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "MEDIUM",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "LOW",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "SC-002",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "MEDIUM",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "LOW",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "SC-003",
+        "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "SC-004",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "BC-002",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "BC-003",
+        "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "SEC-001",
+        "go_live_impact": "Open findings may produce CONDITIONAL GO or ABSTAIN under the shared decision rules.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      },
+      {
+        "control_effectiveness": "EFFECTIVE",
+        "control_id": "SEC-002",
+        "go_live_impact": "Blocking failure yields NO-GO; uncertainty remains visible in the decision trace.",
+        "inherent_risk": "HIGH",
+        "rationale": "Current linked evidence supports the control; residual category is reduced by one level.",
+        "residual_risk": "MEDIUM",
+        "treatment": "MITIGATE"
+      }
+    ],
+    "method": "Categorical status mapping; no numeric score or probabilistic estimate.",
+    "summary": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "LOW": 7,
+      "MEDIUM": 10
+    }
+  },
   "scenario": "GO \u2014 baseline",
   "scenario_key": "go",
   "summary": {
     "ABSTAIN": 0,
     "FAIL": 0,
     "PARTIAL": 0,
-    "PASS": 10
+    "PASS": 17
   },
-  "synthetic": true
+  "synthetic": true,
+  "third_party_assurance": [
+    {
+      "assurance_status": "CURRENT",
+      "category": "Custodian",
+      "concentration_dependency": "Single primary custody relationship",
+      "criticality": "CRITICAL",
+      "evidence_age_days": 6,
+      "evidence_freshness": "2026-10-02",
+      "evidence_freshness_status": "CURRENT",
+      "exception": null,
+      "freshness_days": 90,
+      "materiality": "HIGH",
+      "provider": "Example Custody Provider",
+      "remediation": "Review contingency custody and service transition arrangements."
+    },
+    {
+      "assurance_status": "CURRENT",
+      "category": "Tokenisation platform",
+      "concentration_dependency": "Contract administration and issuance depend on one platform",
+      "criticality": "CRITICAL",
+      "evidence_age_days": 18,
+      "evidence_freshness": "2026-09-20",
+      "evidence_freshness_status": "CURRENT",
+      "exception": null,
+      "freshness_days": 90,
+      "materiality": "HIGH",
+      "provider": "Example Tokenisation Service",
+      "remediation": "Maintain tested exit and contract administration procedures."
+    },
+    {
+      "assurance_status": "PARTIAL",
+      "category": "Exchange/trading venue",
+      "concentration_dependency": "One primary venue in synthetic profile",
+      "criticality": "HIGH",
+      "evidence_age_days": 23,
+      "evidence_freshness": "2026-09-15",
+      "evidence_freshness_status": "PARTIAL",
+      "exception": "Synthetic open evidence follow-up; owner and expiry are not represented.",
+      "freshness_days": 90,
+      "materiality": "MEDIUM",
+      "provider": "Example Trading Venue",
+      "remediation": "Obtain current assurance evidence or record an approved time-bound exception."
+    },
+    {
+      "assurance_status": "CURRENT",
+      "category": "Blockchain infrastructure provider",
+      "concentration_dependency": "RPC failover depends on separately managed endpoint",
+      "criticality": "HIGH",
+      "evidence_age_days": 7,
+      "evidence_freshness": "2026-10-01",
+      "evidence_freshness_status": "CURRENT",
+      "exception": null,
+      "freshness_days": 90,
+      "materiality": "HIGH",
+      "provider": "Example Ledger Infrastructure",
+      "remediation": "Exercise endpoint failover and review dependency concentration."
+    }
+  ]
 }

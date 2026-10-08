@@ -12,12 +12,16 @@ The implementation is an assessment synthesis layer. It does not replace the und
 
 ## What it demonstrates
 
-- A small control registry with owners, domains, severity, blocking status, state requirements, evidence freshness and remediation.
+- A shared control registry with owners, domains, severity, blocking status, state requirements, evidence freshness, remediation and governance-objective mappings.
+- Security and resilience coverage for privileged access, emergency upgrades, contract change, node/RPC dependencies, finality/reorganizations, incident response and key management.
+- Qualitative inherent and residual risk categories with explicit control-effectiveness, treatment and go-live impact rationales. The mapping uses no numeric scores or probabilistic model.
+- A synthetic third-party assurance register covering custody, tokenisation, trading venue and blockchain infrastructure dependencies, with freshness, concentration, materiality, remediation and exception fields.
+- Two product profiles—Example EUR Tokenised Fund and Example Crypto ETP—using the same controls, evaluator, evidence model and decision rules.
 - Explicit `PASS`, `PARTIAL`, `FAIL` and `ABSTAIN` results.
 - Evidence provenance with source, observed date, status and stable reference identifier.
 - Divergent state handling that preserves uncertainty instead of choosing a convenient source.
 - Deterministic scenarios that produce `GO`, `CONDITIONAL GO`, `NO-GO` and `ABSTAIN`.
-- A static, no-login web console with executive summary, control matrix, evidence explorer, architecture view and decision trace.
+- A static, no-login web console with executive summary, control matrix, evidence explorer, qualitative risk summary, product lifecycle, third-party register, architecture view and decision trace.
 
 ## Architecture
 
@@ -52,12 +56,19 @@ Decision precedence is `NO-GO` for a demonstrated blocking failure, then `ABSTAI
 
 | Scenario | Injected condition | Result |
 | --- | --- | --- |
-| `go` | Current evidence and expected state across the registry | GO |
+| `go` | Example EUR Tokenised Fund; current evidence and expected state across the registry | GO |
+| `crypto_etp` | Example Crypto ETP; same engine and shared controls with ETP dependencies | GO |
 | `conditional_go` | Partial non-blocking change approval evidence | CONDITIONAL GO |
 | `no_go` | Single privileged administrator controls contract upgrades | NO-GO |
 | `abstain` | Custody attestation is 47 days old against a 30-day freshness window | ABSTAIN |
 
 All scenario records are synthetic. Identifiers such as `sha256:demo-cu001` are illustrative references, not hashes of external evidence artifacts.
+
+## Risk and governance mapping
+
+Each control declares a qualitative inherent-risk category, treatment, governance objective and go-live impact. The report derives residual categories from the control result: `PASS` reduces one category, `PARTIAL` leaves it unchanged, `FAIL` increases it by one category, and `ABSTAIN` leaves the category unchanged while setting effectiveness to `UNDETERMINED`. Categories are `LOW`, `MEDIUM`, `HIGH` and `CRITICAL`; they are ordinal labels, not numeric scores or measured probabilities. Teams must approve their own categories and mappings.
+
+Governance-objective output links objectives to control IDs, linked evidence IDs and observed result states. This is an audit-readiness aid, not a statement of compliance with any law, regulation, standard or assurance framework. Third-party records are synthetic and show evidence age against a declared freshness window; an open exception remains visible and is not treated as resolved.
 
 ## Design Lineage
 
@@ -106,7 +117,7 @@ Descriptions summarize the linked project READMEs and repository metadata checke
 
 ```text
 src/assurance/       Typed-by-contract evaluation and command-line interface
-scenarios/           Shared control registry and four synthetic YAML assessments
+scenarios/           Shared control registry and five synthetic YAML assessments
 tests/               Decision, freshness, evidence and scenario regression tests
 site/                Static public console and engine-generated report JSON
 scripts/             Static report generation
@@ -144,6 +155,7 @@ python scripts/build_site_data.py
 - Data, system states, evidence and identifiers are synthetic.
 - This is a reference implementation, not a production security platform, audit, custody, settlement or compliance product.
 - Control definitions and decision thresholds are illustrative; teams must adapt them to approved policy and system context.
+- Risk categories, governance objectives and third-party records are illustrative; they do not establish regulatory compliance or independent provider assurance.
 - No live chain, custody, NAV, provider or financial system is connected.
 - `ABSTAIN` describes this engine's inability to conclude; it is not a claim that a product is unsafe or non-compliant.
 - This project does not constitute legal, regulatory or investment advice.

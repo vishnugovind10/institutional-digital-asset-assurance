@@ -1,7 +1,7 @@
-scenario: GO — baseline
-scenario_key: go
+scenario: GO — Example Crypto ETP baseline
+scenario_key: crypto_etp
 as_of: '2026-10-08'
-product: Example EUR Tokenised Fund
+product: Example Crypto ETP
 system_state:
   upgrade_authority: governed_multisig
   custody_authorization: authorized_and_segregated
@@ -21,10 +21,11 @@ system_state:
   incident_response: owned_and_exercised
   key_management: lifecycle_controlled_and_recoverable
 dependencies:
-- Fund administrator
-- Tokenisation platform
-- Custodian
-- Permissioned ledger
+- Example ETP issuer
+- Example Custodian
+- Example Tokenisation Service
+- Example Trading Venue
+- Example Ledger Infrastructure
 - Cash settlement rail
 evidence:
 - id: EV-SC-001
@@ -151,9 +152,9 @@ third_party_assurance:
   remediation: Exercise endpoint failover and review dependency concentration.
   exception: null
 lifecycle:
-- Design
-- Build
-- Security review
-- Operational readiness
+- Product design
+- Issuer and provider onboarding
+- Asset custody and issuance
+- Trading and settlement readiness
 - Launch decision
-- Operate and monitor
+- Ongoing oversight
