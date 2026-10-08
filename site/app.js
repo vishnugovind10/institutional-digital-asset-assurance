@@ -3,7 +3,7 @@ let currentReport;
 
 async function loadReport(name) {
   if (!reportCache[name]) {
-    const response = await fetch(`reports/${name}.json`);
+    const response = await fetch(`reports/${name}.json`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`Unable to load ${name} assessment (${response.status})`);
     reportCache[name] = await response.json();
   }
